@@ -8,11 +8,11 @@ export const homeCarouselData=[
         path:"/women/clothing/women_dress"
     },
     {
-        image:"",
+        image:"dlskhfjn/askdf",
         path:"/women/clothing/women_dress"
     },
     {
-        image:"",
+        image:"lfhelkasdfn",
         path:"/women/clothing/women_saree"
     },
 
