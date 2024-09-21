@@ -7,7 +7,8 @@ import HomePage from './Customer/pages/HomePage/HomePage'
 import Footer from './Customer/Components/Footer/Footer'
 import Product from './Customer/Components/Product/Product'
 import ProductDetails from './Customer/Components/ProductDetails/ProductDetails'
-import CartItem from './Customer/Components/Cart/CartItem'
+import Cart from './Customer/Components/Cart/Cart'
+import CheckOut from './Customer/Components/CheckOut/CheckOut'
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
         {/* <HomePage></HomePage> */}
         {/* <Product></Product> */}
         {/* <ProductDetails></ProductDetails> */}
-        <CartItem></CartItem>
+        {/* <Cart></Cart> */}
+        <CheckOut></CheckOut>
        </div>
 
        <Footer></Footer>
