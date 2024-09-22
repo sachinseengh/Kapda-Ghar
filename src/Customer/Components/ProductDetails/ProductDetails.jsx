@@ -24,7 +24,7 @@
 import { useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Radio, RadioGroup } from "@headlessui/react";
-import {mens_kurta} from '../../../Data/men_kurta'
+import { mens_kurta } from "../../../Data/men_kurta";
 import {
   Box,
   Button,
@@ -35,6 +35,7 @@ import {
 } from "@mui/material";
 import ProductReviewCard from "./ProductReviewCard";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
+import { useNavigate } from "react-router-dom";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -93,7 +94,7 @@ function classNames(...classes) {
 export default function ProductDetails() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
-
+const navigate = useNavigate();
   return (
     <div className="bg-white lg:px-20">
       <div className="pt-6">
@@ -285,6 +286,7 @@ export default function ProductDetails() {
                 </div>
 
                 <Button
+                onClick={()=>navigate(`/cart`)}
                   className="pt-5"
                   variant="contained"
                   sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd" }}
@@ -354,7 +356,7 @@ export default function ProductDetails() {
                   <p className="opacity-60">5854 Ratings</p>
                 </div>
 
-                <Box className="mt-5 space-y-3" >
+                <Box className="mt-5 space-y-3">
                   <Grid container alignItems="center" gap={2}>
                     <Grid item xs={2}>
                       <p>Excellent</p>
@@ -426,16 +428,15 @@ export default function ProductDetails() {
           </div>
         </section>
 
-
         {/* similar products */}
 
         <section className="pt-10">
           <h1 className=" py-5 font-semibold text-2xl">Similar Products</h1>
- <div className="flex flex-wrap space-y-5 space-x-3 items-center justify-center">
-  {mens_kurta.map((item)=><HomeSectionCard product={item}/>
-)}
- </div>
-          
+          <div className="flex flex-wrap space-y-5 space-x-3 items-center justify-center">
+            {mens_kurta.map((item) => (
+              <HomeSectionCard product={item} />
+            ))}
+          </div>
         </section>
       </div>
     </div>

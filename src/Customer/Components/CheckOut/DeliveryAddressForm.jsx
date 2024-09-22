@@ -1,8 +1,14 @@
 import React from "react";
 import AddressCard from "../AddressCard/AddressCard";
 import { Box, Button, Grid, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const DeliveryAddressForm = () => {
+
+  const navigate = useNavigate();
+  const handleOrderSummary=()=>{
+    navigate('/checkout?step=3')
+  }
 
 
 const handleSubmit=(e)=>{
@@ -127,7 +133,7 @@ const handleSubmit=(e)=>{
                   ></TextField>
                 </Grid>
                 <div className="w-full mt-4 mx-6">
-                    <Button  type="submit" variant="contained" sx={{bgcolor:"rgb(79,70,229)"}}> Deliver Here</Button>
+                    <Button onClick={handleOrderSummary}  type="submit" variant="contained" sx={{bgcolor:"rgb(79,70,229)"}}> Deliver Here</Button>
                 </div>
               </Grid>
             </form>

@@ -10,33 +10,24 @@ import ProductDetails from './Customer/Components/ProductDetails/ProductDetails'
 import Cart from './Customer/Components/Cart/Cart'
 import CheckOut from './Customer/Components/CheckOut/CheckOut'
 import Order from './Customer/Components/Order/Order'
+import OrderDetails from './Customer/Components/Order/OrderDetails'
+import CustomerRouters from './Routers/CustomerRouters'
+import { BrowserRouter, createBrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
 
-
-  return (
-    
+ return(
     
     <div>  
-      
-      
-       <Navigation></Navigation>
-       <div>
-        {/* <HomePage></HomePage> */}
-        {/* <Product></Product> */}
-        {/* <ProductDetails></ProductDetails> */}
-        {/* <Cart></Cart> */}
-        {/* <CheckOut></CheckOut> */}
-        <Order/>
-       </div>
-
-       <Footer></Footer>
-       
-       </div>
-    
-    
-    
-  
+  <Routes>
+     <Route path='/' element={<CustomerRouters></CustomerRouters>}>
+        </Route>
+     
+        </Routes>
+   
+        
+     
+        </div>
   )
 }
 
