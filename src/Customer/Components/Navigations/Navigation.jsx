@@ -41,6 +41,8 @@ import { Avatar } from "@mui/material";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import AuthModal from "../Auth/AuthModal";
+
 
 const navigation = {
   categories: [
@@ -177,6 +179,7 @@ export default function Example() {
 
 
 
+const [openAuthModal, setOpenAuthModel]=useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const opens = Boolean(anchorEl);
@@ -186,6 +189,15 @@ export default function Example() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleAuthOpen=()=>{
+    setOpenAuthModel(true);
+  }
+
+const handleAuthClose=()=>{
+  setOpenAuthModel(false);
+}
+
 
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -612,6 +624,7 @@ export default function Example() {
           </div>
         </nav>
       </header>
+      <AuthModal handleClose={handleAuthClose} open={openAuthModal}></AuthModal>
     </div>
   );
 }

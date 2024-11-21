@@ -28,7 +28,7 @@ const CustomerRouters = () => {
         <Route path='/account/order' element={<Order/>}></Route>
         <Route path='/account/order/:orderId' element={<OrderDetails/>}></Route>
         
-        {/* <Route path="*" element={<HomePage></HomePage>}></Route> */}
+        <Route path="*" element={<HomePage></HomePage>}></Route>
         </Routes>
       
       <div>
