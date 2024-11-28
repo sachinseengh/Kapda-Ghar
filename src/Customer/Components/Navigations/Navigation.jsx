@@ -179,7 +179,7 @@ export default function Example() {
 
 
 
-const [openAuthModal, setOpenAuthModel]=useState(false);
+const [openAuthModal, setOpenAuthModal]=React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const opens = Boolean(anchorEl);
@@ -190,12 +190,12 @@ const [openAuthModal, setOpenAuthModel]=useState(false);
     setAnchorEl(null);
   };
 
-  const handleAuthOpen=()=>{
-    setOpenAuthModel(true);
+  const handleOpen=()=>{
+    setOpenAuthModal(true);
   }
 
 const handleAuthClose=()=>{
-  setOpenAuthModel(false);
+  setOpenAuthModal(false);
 }
 
 
@@ -328,7 +328,7 @@ const handleAuthClose=()=>{
               ))}
             </div>
 
-            <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+            {/* <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               <div className="flow-root">
                 <a
                   href="#"
@@ -345,15 +345,16 @@ const handleAuthClose=()=>{
                   Create account
                 </a>
               </div>
-            </div>
-            <div className="space-y-6 border-t border-gray-200 px-4 py-6">
+            </div> */}
+            {/* <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               <div className="flow-root">
-                <a
+                <Button
+                onClick={handleOpen}
                   href="#"
                   className="-m-2 block p-2 font-medium text-gray-900"
                 >
                   Sign in
-                </a>
+                </Button>
               </div>
               <div className="flow-root">
                 <a
@@ -363,7 +364,7 @@ const handleAuthClose=()=>{
                   Create account
                 </a>
               </div>
-            </div>
+            </div> */}
 
             <div className="border-t border-gray-200 px-4 py-6">
               <a href="#" className="-m-2 flex items-center p-2">
@@ -528,8 +529,8 @@ const handleAuthClose=()=>{
 
               <div className="ml-auto flex items-center">
                 {/* {Avatar} */}
-                <div className="pr-4  z-[50]">
-                  <div>
+               {false ? (<div className="pr-4  z-[50]">
+                <div>
                     <Button
                       id="basic-button"
                       aria-controls={opens ? "basic-menu" : undefined}
@@ -537,7 +538,7 @@ const handleAuthClose=()=>{
                       aria-expanded={opens ? "true" : undefined}
                       onClick={handleClick}
                     >
-                      <Avatar
+                    <Avatar
                         sx={{
                           height: "2rem",
                           width: "2rem",
@@ -562,14 +563,16 @@ const handleAuthClose=()=>{
                     </Menu>
                   </div>
                 </div>
+                ):(
 
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
+                  <Button
+                  onClick={handleOpen}
                     href="#"
                     className="text-sm font-medium text-gray-700 hover:text-gray-800"
                   >
                     Sign in
-                  </a>
+                  </Button>
                   <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
                   <a
                     href="#"
@@ -578,6 +581,7 @@ const handleAuthClose=()=>{
                     Create account
                   </a>
                 </div>
+                )}
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a

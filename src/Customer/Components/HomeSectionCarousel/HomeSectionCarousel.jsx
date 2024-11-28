@@ -10,7 +10,7 @@ const HomeSectionCarousel = ({data,sectionName}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   
   // Logging activeIndex to check if it updates
-  console.log('Current Active Index:', activeIndex);
+  // console.log('Current Active Index:', activeIndex);
 
   const responsive = {
     0: { items: 1 },

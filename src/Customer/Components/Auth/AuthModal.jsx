@@ -1,5 +1,6 @@
 import { Box, Typography,Modal } from '@mui/material';
 import React from 'react';
+import RegisterForm from './RegisterForm';
 
 
 
@@ -16,20 +17,20 @@ const style = {
 };
 
 
-const AuthModal = (handleClose,open) => {
+const AuthModal = ({handleClose,open}) => {
+
   return (
+    
     <div>
        <Modal
-        open={true}
+        open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
           
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <RegisterForm></RegisterForm>
         </Box>
       </Modal>
         

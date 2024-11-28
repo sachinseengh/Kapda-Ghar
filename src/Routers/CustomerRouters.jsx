@@ -18,7 +18,7 @@ const CustomerRouters = () => {
       </div>
       
         <Routes>
-        <Route path="/" element={<HomePage></HomePage>}></Route>
+        <Route path="*" element={<HomePage></HomePage>}></Route>
         <Route path="/cart" element={<Cart></Cart>}></Route>
         <Route path="/:levelOne/:levelTwo/:levelThree" element={<Product></Product>}></Route>
         <Route path="/product/:productId" element={<ProductDetails></ProductDetails>}></Route>
@@ -28,7 +28,7 @@ const CustomerRouters = () => {
         <Route path='/account/order' element={<Order/>}></Route>
         <Route path='/account/order/:orderId' element={<OrderDetails/>}></Route>
         
-        <Route path="*" element={<HomePage></HomePage>}></Route>
+        {/* <Route path="*" element={<HomePage></HomePage>}></Route> */}
         </Routes>
       
       <div>
