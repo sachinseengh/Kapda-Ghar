@@ -7,9 +7,9 @@ export const  LOGIN_SUCCESS ='LOGIN_SUCCESS';
 export const  LOGIN_FAILURE ='LOGIN_FAILURE';
 
 
-export const  GET_USER__REQUEST ='GET_USER__REQUEST';
-export const  GET_USER__SUCCESS ='GET_USER__SUCCESS';
-export const  GET_USER__FAILURE ='GET_USER__FAILURE';
+export const  GET_USER_REQUEST ='GET_USER__REQUEST';
+export const  GET_USER_SUCCESS ='GET_USER__SUCCESS';
+export const  GET_USER_FAILURE ='GET_USER__FAILURE';
 
 
 
