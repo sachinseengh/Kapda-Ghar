@@ -14,7 +14,7 @@
 */
 "use client";
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -35,13 +35,15 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 import { Avatar } from "@mui/material";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AuthModal from "../Auth/AuthModal";
+import { getUser, logout } from "../../../State/Auth/Action";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const navigation = {
@@ -178,11 +180,19 @@ export default function Example() {
 
 
 
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const jwt = localStorage.getItem("jwt");
+const {auth} = useSelector(store=>store);
+const location= useLocation();
+
 
 const [openAuthModal, setOpenAuthModal]=React.useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const opens = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -192,16 +202,17 @@ const [openAuthModal, setOpenAuthModal]=React.useState(false);
 
   const handleOpen=()=>{
     setOpenAuthModal(true);
+    
   }
 
 const handleAuthClose=()=>{
   setOpenAuthModal(false);
+ 
 }
 
 
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
-
+ 
   const handleCategoryClick = (category, section, item, close) => {
     console.log("Navigating to:", `/${category.id}/${section.id}/${item.name}`);
     navigate(`/${category.id}/${section.id}/${encodeURIComponent(item.name)}`);
@@ -211,6 +222,45 @@ const handleAuthClose=()=>{
   const handleOrder=()=>{
     navigate('/account/order');
   }
+
+
+//closing model
+useEffect(()=>{
+  if(jwt){
+    dispatch(getUser(jwt))
+    handleClose();
+    
+  }
+},[jwt,auth.jwt])
+
+useEffect(()=>{
+  if(auth.user){
+    
+    handleAuthClose()
+    handleClose()
+    
+  }
+
+  if(location.pathname==="/login" || location.pathname==="/register"){
+    navigate(-1)
+    handleClose()
+  }
+},[auth.user])
+
+
+
+const handleLogout=()=>{
+  dispatch(logout())
+
+  
+}
+
+
+
+
+
+
+
   return (
 
     <div className="bg-white ">
@@ -529,7 +579,7 @@ const handleAuthClose=()=>{
 
               <div className="ml-auto flex items-center">
                 {/* {Avatar} */}
-               {false ? (<div className="pr-4  z-[50]">
+               {auth.user ? (<div className="pr-4  z-[50]">
                 <div>
                     <Button
                       id="basic-button"
@@ -545,7 +595,7 @@ const handleAuthClose=()=>{
                           bgcolor: "purple",
                         }}
                       >
-                        R
+                      {auth.user.firstName[0].toUpperCase()}
                       </Avatar>
                     </Button>
                     <Menu
@@ -559,7 +609,7 @@ const handleAuthClose=()=>{
                     >
                       <MenuItem onClick={handleClose}>Profile</MenuItem>
                       <MenuItem onClick={handleOrder}>My account</MenuItem>
-                      <MenuItem onClick={handleClose}>Logout</MenuItem>
+                      <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                   </div>
                 </div>

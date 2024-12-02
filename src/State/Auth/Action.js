@@ -62,12 +62,12 @@ const getUserRequest = () => ({ type: GET_USER_REQUEST });
 const getUserSuccess = (user) => ({ type: GET_USER_SUCCESS, payload: user });
 const getUserFailure = (error) => ({ type: GET_USER_FAILURE, payload: error });
 
-export const getUser = () => async (dispatch) => {
+export const getUser = (jwt) => async (dispatch) => {
   dispatch(getUserRequest());
 
-  const token = localStorage.getItem("jwt");
+  // const token = localStorage.getItem("jwt");
 
-  if (!token) {
+  if (!jwt) {
     console.error("Token is not available");
     dispatch(getUserFailure("Token is missing"));
     return;
@@ -76,7 +76,7 @@ export const getUser = () => async (dispatch) => {
   try {
     const response = await axios.get(`${API_BASE_URL}/api/users/profile`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${jwt}`,
       },
     });
 
@@ -92,4 +92,6 @@ export const getUser = () => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("jwt");
   dispatch({ type: LOGOUT });
+
+  
 };
