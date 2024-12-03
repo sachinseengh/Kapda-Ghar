@@ -35,6 +35,8 @@ export const register = (userData) => async (dispatch) => {
   }
 };
 
+
+
 const loginRequest = () => ({ type: LOGIN_REQUEST });
 const loginSuccess = (user) => ({ type: LOGIN_SUCCESS, payload: user });
 const loginFailure = (error) => ({ type: LOGIN_FAILURE, payload: error });
@@ -58,12 +60,17 @@ export const login = (userData) => async (dispatch) => {
   }
 };
 
+
+
+
 const getUserRequest = () => ({ type: GET_USER_REQUEST });
 const getUserSuccess = (user) => ({ type: GET_USER_SUCCESS, payload: user });
 const getUserFailure = (error) => ({ type: GET_USER_FAILURE, payload: error });
 
 export const getUser = (jwt) => async (dispatch) => {
   dispatch(getUserRequest());
+
+  
 
   // const token = localStorage.getItem("jwt");
 
@@ -81,6 +88,7 @@ export const getUser = (jwt) => async (dispatch) => {
     });
 
     const user = response.data;
+    
     console.log("User fetched:", user);
     dispatch(getUserSuccess(user));
   } catch (error) {

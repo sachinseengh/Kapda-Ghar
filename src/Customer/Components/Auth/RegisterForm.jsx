@@ -31,9 +31,7 @@ const RegisterForm = () => {
         password:data.get("password")
 
     }
-
     dispatch(register(userData))
-
     }
   return (
     <div>

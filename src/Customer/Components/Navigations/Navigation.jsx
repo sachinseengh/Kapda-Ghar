@@ -227,6 +227,8 @@ const handleAuthClose=()=>{
 //closing model
 useEffect(()=>{
   if(jwt){
+
+    
     dispatch(getUser(jwt))
     handleClose();
     
@@ -254,12 +256,6 @@ const handleLogout=()=>{
 
   
 }
-
-
-
-
-
-
 
   return (
 
