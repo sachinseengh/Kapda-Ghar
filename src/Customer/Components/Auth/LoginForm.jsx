@@ -12,16 +12,12 @@ const dispatch = useDispatch();
 const navigate = useNavigate();
 
 
-
-
 // useEffect(()=>{
 //   if(jwt){
 //       dispatch(getUser(jwt))
 //   }
   
 // },[jwt,auth.jwt])
-
-
 
   const handleSubmit = (event) => {
     event.preventDefault();

@@ -70,8 +70,6 @@ const getUserFailure = (error) => ({ type: GET_USER_FAILURE, payload: error });
 export const getUser = (jwt) => async (dispatch) => {
   dispatch(getUserRequest());
 
-  
-
   // const token = localStorage.getItem("jwt");
 
   if (!jwt) {
@@ -86,9 +84,7 @@ export const getUser = (jwt) => async (dispatch) => {
         Authorization: `Bearer ${jwt}`,
       },
     });
-
     const user = response.data;
-    
     console.log("User fetched:", user);
     dispatch(getUserSuccess(user));
   } catch (error) {
