@@ -183,7 +183,7 @@ export default function Example() {
 const navigate = useNavigate();
 const dispatch = useDispatch();
 const jwt = localStorage.getItem("jwt");
-const {auth} = useSelector(store=>store);
+const auth = useSelector((state) => state.auth);
 const location= useLocation();
 
 

@@ -38,6 +38,7 @@ import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import { useNavigate } from "react-router-dom";
 
 const product = {
+  id:1,
   name: "Basic Tee 6-Pack",
   price: "$192",
   href: "#",
@@ -149,7 +150,7 @@ const navigate = useNavigate();
             </div>
             <div className="flex flex-wrap space-x-5 justify-center">
               {product.images.map((item) => (
-                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
+                <div  className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
                   <img
                     alt={item.alt}
                     src={item.src}
@@ -434,7 +435,7 @@ const navigate = useNavigate();
           <h1 className=" py-5 font-semibold text-2xl">Similar Products</h1>
           <div className="flex flex-wrap space-y-5 space-x-3 items-center justify-center">
             {mens_kurta.map((item) => (
-              <HomeSectionCard product={item} />
+              <HomeSectionCard  key ={item.id} product={item} />
             ))}
           </div>
         </section>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -20,7 +20,10 @@ import ProductCard from './ProductCard'
 import { filters, singleFilter } from './FilterData'
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { findProducts } from '../../../State/Product/Action'
+import { NavItem } from 'react-bootstrap'
 
 const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
@@ -31,12 +34,50 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Product(value,sectionId) {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+export default function Product() {
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate();
-   
+  const param = useParams();
+  const dispatch = useDispatch();
+
+  const decodedQueryString = decodeURIComponent(location.search);
+  const searchParams = new URLSearchParams(decodedQueryString);
+
+  const colorValue = searchParams.get("color");
+  const sizeValue = searchParams.get("size");
+  const priceValue = searchParams.get("price");
+  const discount = searchParams.get("discount");
+  const sortValue = searchParams.get("sort");
+  const pageNumber = searchParams.get("page") || 1;
+  const stock = searchParams.get("stock");
+
+ 
+  const data = useMemo(() => {
+    const [minPrice, maxPrice] = priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
+
+    return {
+      category: param.levelThree,
+      colors: colorValue || [],
+      sizes: sizeValue || [],
+      minPrice,
+      maxPrice,
+      minDiscount: discount || 0,
+      sort: sortValue || "price_low",
+      pageNumber: pageNumber - 1,
+      pageSize: 10,
+      stock: stock,
+    };
+  }, [param.levelThree, colorValue, sizeValue, priceValue, discount, sortValue, pageNumber, stock]);
+
+  useEffect(() => {
+  
+    console.log(data);
+    dispatch(findProducts(data));
+  }, [data, dispatch]);
+
+
    const handleFilter=(value,sectionId)=>{
      const searchParams = new URLSearchParams(location.search);
 
@@ -312,7 +353,10 @@ onChange={(e)=>handleRadioFilterChange(e,section.id)}
               <div className="lg:col-span-4">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 ">
                   {mens_kurta.map((item) => (
-                    <ProductCard product={item} />
+
+                    <ProductCard  key={item.id} product={item} />
+
+
                   ))}
                 </div>
               </div>

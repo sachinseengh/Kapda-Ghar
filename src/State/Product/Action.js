@@ -1,6 +1,7 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import { FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY_ID_SUCCESS, FIND_PRODUCT_FAILURE, FIND_PRODUCT_REQUEST, FIND_PRODUCT_SUCCESS } from "./ActionType";
 
-const findProducts =(reqData)=>async(dispatch)=>{
+export const findProducts =(reqData)=>async(dispatch)=>{
 
     dispatch({type:FIND_PRODUCT_REQUEST})
 
@@ -8,7 +9,9 @@ const findProducts =(reqData)=>async(dispatch)=>{
 
     try {
 
-        const {data}= api.get(`/api/products/color=${colro}&size=${sizes}&maxPrice=${maxPrice}&minPrice=${minPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}$pageSize=${pageSize}`)
+        const {data}= await api.get(`/api/products/color=${colro}&size=${sizes}&maxPrice=${maxPrice}&minPrice=${minPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}$pageSize=${pageSize}`)
+
+        console.log("product data",data)
 
         dispatch({type:FIND_PRODUCT_SUCCESS,payload:data})
        
