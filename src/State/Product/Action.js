@@ -3,21 +3,26 @@ import { FIND_PRODUCT_BY_ID_FAILURE, FIND_PRODUCT_BY_ID_REQUEST, FIND_PRODUCT_BY
 
 export const findProducts =(reqData)=>async(dispatch)=>{
 
+
+    
     dispatch({type:FIND_PRODUCT_REQUEST})
 
-    const {colors,sizes,minPrice,maxPrice,minDiscount,category,stock,sort,pageNumber,pageSize}=reqData;
+    const {colors,sizes,minPrice,maxPrice,minDiscount,category,stock,sort,pageNumber,pageSize}=reqData
+    
+    
 
-    try {
+    // try {
 
-        const {data}= await api.get(`/api/products/color=${colro}&size=${sizes}&maxPrice=${maxPrice}&minPrice=${minPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}$pageSize=${pageSize}`)
+    //     const {data}= await api.get(`/api/products?color=${colors}&size=${sizes}&maxPrice=${maxPrice}&minPrice=${minPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}$pageSize=${pageSize}`)
 
-        console.log("product data",data)
+    //     console.log("woo");
+    //     console.log("product data",data)
 
-        dispatch({type:FIND_PRODUCT_SUCCESS,payload:data})
-       
-    } catch (error) {
-        dispatch({type:FIND_PRODUCT_FAILURE,payload:error.message})
-    }
+    //     dispatch({type:FIND_PRODUCT_SUCCESS,payload:data})
+        
+    // } catch (error) {
+    //     dispatch({type:FIND_PRODUCT_FAILURE,payload:error.message})
+    // }
 }
 
 

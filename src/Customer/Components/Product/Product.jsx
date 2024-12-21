@@ -73,7 +73,7 @@ export default function Product() {
 
   useEffect(() => {
   
-    console.log(data);
+    
     dispatch(findProducts(data));
   }, [data, dispatch]);
 
