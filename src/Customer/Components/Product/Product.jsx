@@ -53,30 +53,29 @@ export default function Product() {
   const pageNumber = searchParams.get("page") || 1;
   const stock = searchParams.get("stock");
 
- 
   const data = useMemo(() => {
-    const [minPrice, maxPrice] = priceValue === null ? [0, 10000] : priceValue.split("-").map(Number);
+    const [minPrice, maxPrice] = priceValue?.includes("-")
+      ? priceValue.split("-").map(Number)
+      : [0, 10000];
 
     return {
       category: param.levelThree,
-      colors: colorValue || [],
-      sizes: sizeValue || [],
+      colors: colorValue || null,
+      sizes: sizeValue || null,
       minPrice,
       maxPrice,
       minDiscount: discount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber - 1,
       pageSize: 10,
-      stock: stock,
+      stock,
     };
   }, [param.levelThree, colorValue, sizeValue, priceValue, discount, sortValue, pageNumber, stock]);
 
   useEffect(() => {
-  
     
     dispatch(findProducts(data));
   }, [data, dispatch]);
-
 
    const handleFilter=(value,sectionId)=>{
      const searchParams = new URLSearchParams(location.search);
