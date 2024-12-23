@@ -21,9 +21,10 @@ import { filters, singleFilter } from './FilterData'
 
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { findProducts } from '../../../State/Product/Action'
 import { NavItem } from 'react-bootstrap'
+import Pagination from '@mui/material/Pagination';
 
 const sortOptions = [
   { name: 'Price: Low to High', href: '#', current: false },
@@ -41,6 +42,8 @@ export default function Product() {
   const navigate = useNavigate();
   const param = useParams();
   const dispatch = useDispatch();
+
+  const {product} = useSelector((store)=>store);
 
   const decodedQueryString = decodeURIComponent(location.search);
   const searchParams = new URLSearchParams(decodedQueryString);
@@ -60,14 +63,14 @@ export default function Product() {
 
     return {
       category: param.levelThree,
-      colors: colorValue || null,
-      sizes: sizeValue || null,
+      colors: colorValue || "",
+      sizes: sizeValue || "",
       minPrice,
       maxPrice,
       minDiscount: discount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber - 1,
-      pageSize: 10,
+      pageSize: 1,
       stock,
     };
   }, [param.levelThree, colorValue, sizeValue, priceValue, discount, sortValue, pageNumber, stock]);
@@ -76,6 +79,18 @@ export default function Product() {
     
     dispatch(findProducts(data));
   }, [data, dispatch]);
+
+
+const handlePaginationChange=(event,value)=>{
+  const searchParams=new URLSearchParams(location.search);
+  searchParams.set("page",value);
+
+  const query=searchParams.toString();
+   
+  navigate({search:`?${query}`})
+}
+
+
 
    const handleFilter=(value,sectionId)=>{
      const searchParams = new URLSearchParams(location.search);
@@ -351,7 +366,7 @@ onChange={(e)=>handleRadioFilterChange(e,section.id)}
               {/* Products */}
               <div className="lg:col-span-4">
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 ">
-                  {mens_kurta.map((item) => (
+                  {product.products &&  product.products?.content?.map((item) => (
 
                     <ProductCard  key={item.id} product={item} />
 
@@ -359,6 +374,13 @@ onChange={(e)=>handleRadioFilterChange(e,section.id)}
                   ))}
                 </div>
               </div>
+            </div>
+          </section>
+          <section className="w-full px=[3.6rem]">
+            <div className="px-4 py-5 flex justify-center">
+
+<Pagination count={product.products?.totalPages} onChange={handlePaginationChange} color="secondary"/>
+
             </div>
           </section>
         </main>

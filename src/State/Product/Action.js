@@ -15,10 +15,12 @@ export const findProducts =(reqData)=>async (dispatch)=>{
 
         const {data}= await api.get(`/api/products?color=${colors}&size=${sizes}&maxPrice=${maxPrice}&minPrice=${minPrice}&minDiscount=${minDiscount}&category=${category}&stock=${stock}&sort=${sort}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
 
+
+        console.log("product data",data); 
         dispatch({type:FIND_PRODUCT_SUCCESS,payload:data})
         
     } catch (error) {
-       console.log("YEs error",error.message);
+      
         dispatch({type:FIND_PRODUCT_FAILURE,payload:error.message})
     }
 }
