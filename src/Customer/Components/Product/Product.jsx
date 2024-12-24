@@ -81,6 +81,8 @@ export default function Product() {
   }, [data, dispatch]);
 
 
+
+  //When clicked on pagination button 
 const handlePaginationChange=(event,value)=>{
   const searchParams=new URLSearchParams(location.search);
   searchParams.set("page",value);
