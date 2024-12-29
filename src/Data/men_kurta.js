@@ -405,33 +405,5 @@ export const mens_kurta=[
           "thirdLavelCategory": "mens_kurta",
           "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
     },
-    {
-      "id":15,
-        "imageUrl": "https://rukminim1.flixcart.com/image/612/612/l3lx8cw0/kurta/d/o/m/l-kurta-mr-button-tap-in-original-imagezztuysgufsh.jpeg?q=70",
-        "brand": "Tap in",
-        "title": "Men Solid Cotton Blend Straight Kurta",
-        "color": "Orange",
-        "discountedPrice": 395,
-        "price": 1495,
-        "discountPersent": 73,
-        "size": [
-            {
-              "name": "S",
-              "quantity": 20
-            },
-            {
-              "name": "M",
-              "quantity": 30
-            },
-            {
-              "name": "L",
-              "quantity": 50
-            }
-          ],
-          "quantity": 100,
-          "topLavelCategory": "Men",
-          "secondLavelCategory": "Clothing",
-          "thirdLavelCategory": "mens_kurta",
-          "description":"A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style."
-    }
+    
 ]
