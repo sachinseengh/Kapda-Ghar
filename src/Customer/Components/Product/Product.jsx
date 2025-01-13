@@ -70,7 +70,7 @@ export default function Product() {
       minDiscount: discount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber - 1,
-      pageSize: 1,
+      pageSize:6,
       stock,
     };
   }, [param.levelThree, colorValue, sizeValue, priceValue, discount, sortValue, pageNumber, stock]);

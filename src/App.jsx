@@ -19,11 +19,13 @@ function App() {
  return(
     
     <div>  
-  <Routes>
+    
+   <Routes>
      <Route path='/' element={<CustomerRouters></CustomerRouters>}>
         </Route>
      
         </Routes>
+        
    
         
      

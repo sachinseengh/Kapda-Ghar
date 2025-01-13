@@ -21,7 +21,7 @@
 */
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Radio, RadioGroup } from "@headlessui/react";
 import { mens_kurta } from "../../../Data/men_kurta";
@@ -35,7 +35,9 @@ import {
 } from "@mui/material";
 import ProductReviewCard from "./ProductReviewCard";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { findProductsById } from "../../../State/Product/Action";
+import { useDispatch, useSelector } from "react-redux";
 
 const product = {
   id:1,
@@ -93,9 +95,33 @@ function classNames(...classes) {
 }
 
 export default function ProductDetails() {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+ 
+const [selectedSize, setSelectedSize] = useState("");
 const navigate = useNavigate();
+const params = useParams();
+
+const dispatch=useDispatch();
+
+const {products} = useSelector(store=>store);
+
+
+const handleAddtoCart=()=>{
+  navigate("/cart");
+}
+
+useEffect(()=>{
+  const data = {productId:params.productId}
+
+  dispatch(findProductsById(data));
+
+
+},[params.productId])
+
+
+
+
+
+
   return (
     <div className="bg-white lg:px-20">
       <div className="pt-6">
@@ -143,8 +169,8 @@ const navigate = useNavigate();
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
               <img
-                alt={product.images[0].alt}
-                src={product.images[0].src}
+                alt=" "
+                src={products.product?.imageUrl}
                 className="h-full w-full object-cover object-center"
               />
             </div>
