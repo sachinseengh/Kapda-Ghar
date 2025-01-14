@@ -38,6 +38,7 @@ import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import { useNavigate, useParams } from "react-router-dom";
 import { findProductsById } from "../../../State/Product/Action";
 import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart } from "../../../State/Cart/Action";
 
 const product = {
   id:1,
@@ -106,6 +107,9 @@ const {products} = useSelector(store=>store);
 
 
 const handleAddtoCart=()=>{
+
+  const data={productId:params.productId,size:selectedSize.name }
+  dispatch(addItemToCart(data));
   navigate("/cart");
 }
 
@@ -191,11 +195,10 @@ useEffect(()=>{
           <div className="lg:cols-span-1 mx-auto max-w-2xl px-4 pb-16 sm:px-6 lg:max-w-7xl lg:px-8 lg:pb-24">
             <div className="lg:col-span-2 ">
               <h1 className="text-2xl lg:text-xl font-semibold text-gray-900">
-                Universal Outfit
+                {products.product?.brand}
               </h1>
               <h1 className="text-lg lg:text-xl text-gray-900 opacity-60 pt-1">
-                Casual Puff Sleeves Solid Women White Top
-              </h1>
+{products.product?.title}              </h1>
             </div>
 
             {/* Options */}
@@ -203,9 +206,9 @@ useEffect(()=>{
               <h2 className="sr-only">Product information</h2>
               {/* <p className="text-3xl tracking-tight text-gray-900">{product.price}</p> */}
               <div className="flex space-x-5 itesms-center text-lg lg:text-xl text-gray-900 mt-6">
-                <p className="font-semibold">Rs.199</p>
-                <p className="opacity-50 line-through">Rs.255</p>
-                <p className="text-green-500">5%off</p>
+                <p className="font-semibold">Rs {products.product?.discountedPrice}</p>
+                <p className="opacity-50 line-through">Rs {products.product?.price}</p>
+                <p className="text-green-500">{products.product?.discountPercent}% Off</p>
               </div>
 
               {/* Reviews */}
@@ -313,7 +316,7 @@ useEffect(()=>{
                 </div>
 
                 <Button
-                onClick={()=>navigate(`/cart`)}
+                onClick={()=>handleAddtoCart()}
                   className="pt-5"
                   variant="contained"
                   sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd" }}
